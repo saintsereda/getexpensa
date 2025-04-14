@@ -7,12 +7,10 @@
     <style>
       @import url("https://fonts.googleapis.com/css?family=Inter:500,400|Just+Me+Again+Down+Here:400");
     </style>
-    <!-- Use a single link for tailwind with proper path -->
-    <link href="./tailwind.css" rel="stylesheet" />
   </head>
   <body>
     <div id="app"></div>
-    <!-- Make sure the path is correct in the built version -->
-    <script type="module" src="./src/index.tsx"></script>
+    <!-- Use this format which Vite will transform during build -->
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
