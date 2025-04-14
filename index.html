@@ -63,14 +63,6 @@
       justify-content: center;
     }
 
-    .logo-video {
-      width: 150%;
-      height: 150%;
-      object-fit: cover;
-      transform: scale(1.5);
-      transform-origin: center;
-    }
-
     .logo-gif {
       width: 150%;
       height: 150%;
@@ -268,11 +260,9 @@
     <div class="container">
       <section class="content">
         <!-- Logo -->
-        <video class="logo-video" autoplay loop muted playsinline>
-          <source src="./public/expensalogo.mp4" type="video/mp4">
-          <!-- Fallback for browsers that don't support video -->
-          <img class="logo-video" src="./public/expensalogo.gif" alt="Expensa logo">
-        </video>
+        <div class="logo-container">
+          <img class="logo-gif" src="./public/expensalogo.gif" alt="Expensa logo">
+        </div>
 
         <div class="text-content">
           <!-- Header -->
