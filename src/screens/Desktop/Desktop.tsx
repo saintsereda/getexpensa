@@ -10,7 +10,7 @@ export const Desktop = (): JSX.Element => {
             <img
               className="w-[150%] h-[150%] object-cover scale-100 origin-center"
               alt="Expensa logo"
-              src="/expensalogo.gif"
+              src="./expensalogo.gif"
             />
           </div>
 
