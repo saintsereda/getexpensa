@@ -51,33 +51,22 @@
     }
 
     /* Logo */
-    .logo {
+    .logo-container {
       width: 96px;
       height: 96px;
-      background-color: white;
       border-radius: 50%;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .logo-inner {
-      width: 48px;
-      height: 48px;
-      background-color: black;
-      position: relative;
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    }
-
-    .logo-inner::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      background-color: white;
-      transform: rotate(45deg);
-      top: 16px;
-      left: 16px;
+    .logo-gif {
+      width: 150%;
+      height: 150%;
+      object-fit: cover;
+      transform: scale(1.5);
+      transform-origin: center;
     }
 
     /* Text content */
@@ -190,21 +179,9 @@
         line-height: 60px;
       }
 
-      .logo {
+      .logo-container {
         width: 80px;
         height: 80px;
-      }
-
-      .logo-inner {
-        width: 40px;
-        height: 40px;
-      }
-
-      .logo-inner::after {
-        width: 14px;
-        height: 14px;
-        top: 13px;
-        left: 13px;
       }
     }
   </style>
@@ -214,8 +191,8 @@
     <div class="container">
       <section class="content">
         <!-- Logo -->
-        <div class="logo">
-          <div class="logo-inner"></div>
+        <div class="logo-container">
+          <img class="logo-gif" src="./public/expensalogo.gif" alt="Expensa logo">
         </div>
 
         <div class="text-content">
