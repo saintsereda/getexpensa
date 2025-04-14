@@ -3,14 +3,16 @@ import { Button } from "../../components/ui/button";
 
 export const Desktop = (): JSX.Element => {
   return (
-    <main className="flex justify-center w-full min-h-screen bg-white">
-      <div className="w-full max-w-[1440px] h-[1024px] [background:linear-gradient(180deg,rgba(27,27,27,1)_0%,rgba(0,0,0,1)_100%)] flex items-center justify-center">
+    <main className="flex justify-center w-full min-h-screen [background:linear-gradient(180deg,rgba(27,27,27,1)_0%,rgba(0,0,0,1)_100%)]">
+      <div className="w-full max-w-[1440px] min-h-screen flex items-center justify-center">
         <section className="flex flex-col items-center gap-10 w-full max-w-[874px] px-4">
-          <img
-            className="w-24 h-24"
-            alt="Expensa logo"
-            src="/3d-logo-texture-render-apr-11-2025--2--1.png"
-          />
+          <div className="w-24 h-24 overflow-hidden rounded-full">
+            <img
+              className="w-[150%] h-[150%] object-cover scale-100 origin-center"
+              alt="Expensa logo"
+              src="/expensalogo.gif"
+            />
+          </div>
 
           <div className="flex flex-col items-center gap-10 w-full">
             <header className="flex flex-col items-center w-full">
