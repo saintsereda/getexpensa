@@ -1,19 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Expensa - Expense tracking, simplified</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <style>
-      @import url("https://fonts.googleapis.com/css?family=Inter:500,400|Just+Me+Again+Down+Here:400");
-    </style>
-    <link href="tailwind.css" rel="stylesheet" />
-    <link href="tailwind.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="./src/index.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expensa - Expense tracking, simplified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Base styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      color: white;
+    }
+
+    /* Main container */
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(27,27,27,1) 0%, rgba(0,0,0,1) 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1440px;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content {
+      max-width: 874px;
+      width: 100%;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    /* Logo */
+    .logo {
+      width: 96px;
+      height: 96px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-inner {
+      width: 48px;
+      height: 48px;
+      background-color: black;
+      position: relative;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    .logo-inner::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: white;
+      transform: rotate(45deg);
+      top: 16px;
+      left: 16px;
+    }
+
+    /* Text content */
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 80px;
+      text-align: center;
+      letter-spacing: 0.37px;
+      line-height: 90px;
+    }
+
+    .highlight {
+      font-family: 'Just Me Again Down Here', cursive;
+      font-weight: normal;
+      font-size: 140px;
+      color: #69ff98;
+      text-align: center;
+      letter-spacing: 0.37px;
+      line-height: 90px;
+      margin-top: -24px;
+      white-space: nowrap;
+    }
+
+    /* Description and CTA */
+    .description-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 610px;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 16px;
+      text-align: center;
+      line-height: 28px;
+    }
+
+    .cta-button {
+      height: 48px;
+      padding: 0 16px;
+      background-color: white;
+      color: black;
+      border-radius: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-button span:first-child {
+      margin-right: 6px;
+    }
+
+    .arrow {
+      font-size: 17px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 50px;
+        line-height: 60px;
+      }
+
+      .highlight {
+        font-size: 90px;
+        line-height: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 40px;
+        line-height: 48px;
+      }
+
+      .highlight {
+        font-size: 70px;
+        line-height: 60px;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+
+      .logo-inner {
+        width: 40px;
+        height: 40px;
+      }
+
+      .logo-inner::after {
+        width: 14px;
+        height: 14px;
+        top: 13px;
+        left: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <section class="content">
+        <!-- Logo -->
+        <div class="logo">
+          <div class="logo-inner"></div>
+        </div>
+
+        <div class="text-content">
+          <!-- Header -->
+          <header>
+            <h1>Expense tracking,</h1>
+            <span class="highlight">simplified</span>
+          </header>
+
+          <!-- Description and CTA -->
+          <div class="description-cta">
+            <p>
+              Effortlessly manage your spending with Expensa – a beautifully
+              simple app designed for quick expense entry and a seamless,
+              intuitive experience
+            </p>
+
+            <!-- CTA Button -->
+            <button class="cta-button">
+              <span>Get early access</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
 </html>
