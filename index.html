@@ -292,8 +292,8 @@
             </button>
             
             <!-- Email Form (initially hidden) -->
-            <form id="emailForm" class="email-form" onsubmit="return false;">
-              <input type="email" class="email-input" placeholder="Enter email" required>
+            <form id="emailForm" class="email-form" action="https://formspree.io/f/xkgjeqba" method="POST">
+              <input type="email" name="email" class="email-input" placeholder="Enter email" required>
               <button type="submit" class="send-button">→</button>
             </form>
           </div>
@@ -303,43 +303,65 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const ctaButton = document.getElementById('ctaButton');
-      const emailForm = document.getElementById('emailForm');
+document.addEventListener('DOMContentLoaded', function() {
+  const ctaButton = document.getElementById('ctaButton');
+  const emailForm = document.getElementById('emailForm');
+  
+  ctaButton.addEventListener('click', function() {
+    // Hide the CTA button with a fade effect
+    ctaButton.style.opacity = '0';
+    
+    // After the fade out animation completes, hide the button and show the form
+    setTimeout(function() {
+      ctaButton.style.display = 'none';
+      emailForm.style.display = 'flex';
       
-      ctaButton.addEventListener('click', function() {
-        // Hide the CTA button with a fade effect
-        ctaButton.style.opacity = '0';
+      // Trigger fade in for the form
+      setTimeout(function() {
+        emailForm.style.opacity = '1';
         
-        // After the fade out animation completes, hide the button and show the form
-        setTimeout(function() {
-          ctaButton.style.display = 'none';
-          emailForm.style.display = 'flex';
-          
-          // Trigger fade in for the form
-          setTimeout(function() {
-            emailForm.style.opacity = '1';
-            
-            // Focus on the input field
-            document.querySelector('.email-input').focus();
-          }, 50);
-        }, 300);
-      });
+        // Focus on the input field
+        document.querySelector('.email-input').focus();
+      }, 50);
+    }, 300);
+  });
+  
+  // Handle form submission with Formspree
+  emailForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = document.querySelector('.email-input').value;
+    
+    if (email) {
+      const formData = new FormData(form);
       
-      // Handle form submission
-      emailForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.querySelector('.email-input').value;
-        
-        if (email) {
-          // You would typically send this to your backend
-          console.log('Email submitted:', email);
-          
-          // Show a success message (you could replace this with your own logic)
-          emailForm.innerHTML = '<div style="color: #69ff98; width: 100%; text-align: center;">Thanks! We\'ll be in touch soon.</div>';
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
         }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show success message
+          emailForm.innerHTML = '<div style="color: #69ff98; width: 100%; text-align: center;">Thanks! We\'ll be in touch soon.</div>';
+        } else {
+          // Handle errors
+          response.json().then(data => {
+            emailForm.innerHTML = '<div style="color: #ff6969; width: 100%; text-align: center;">Oops! Something went wrong. Please try again.</div>';
+            console.error(data);
+          });
+        }
+      })
+      .catch(error => {
+        // Handle network errors
+        emailForm.innerHTML = '<div style="color: #ff6969; width: 100%; text-align: center;">Network error! Please check your connection.</div>';
+        console.error('Error:', error);
       });
-    });
+    }
+  });
+});
   </script>
 </body>
 </html>
