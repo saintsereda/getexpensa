@@ -235,6 +235,10 @@
       }
     }
 
+    .line-block {
+    display: block;
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 40px;
@@ -269,19 +273,17 @@
         <div class="text-content">
           <!-- Header -->
           <header>
-            <h1>Know where your</h1>
-            <h1>money goes</h1>
+            <h1><span class="line-block">Know where your</span>
+            <span class="line-block">money goes</span></h1>
           </header>
-
+        
           <!-- Description and CTA -->
           <div class="description-cta">
             <p>
-              Smart expense tracking with budgets, subscriptions,
+              <span class="line-block">Smart expense tracking with budgets, subscriptions,</span>
+              <span class="line-block">and multi-currency support</span>
             </p>
-            <p>
-              and multi-currency support
-            </p>
-
+        
             <!-- CTA Button -->
             <button id="ctaButton" class="cta-button">
               <span>Get early access</span>
