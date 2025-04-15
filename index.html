@@ -8,14 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
+    /* Reset and ensure full black background */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Base styles */
     html, body {
       background-color: #000000;
       color: white;
@@ -55,22 +54,21 @@
 
     /* Logo */
     .logo-container {
-      width: 88px;
-      height: 88px;
-
+      width: 64px;
+      height: 64px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .logo-gif {
-      width: 100%;
-      height: 100%;
+    /* .logo-gif {
+      width: 150%;
+      height: 150%;
       object-fit: cover;
-
+      transform: scale(1.5);
       transform-origin: center;
-    }
+    } */
 
     /* Text content */
     .text-content {
@@ -90,7 +88,7 @@
     }
 
     h1 {
-      font-family: 'Inter', sans-serif;
+      font-family: 'SF Pro Rounded', sans-serif;
       font-weight: 400;
       font-size: 80px;
       text-align: center;
@@ -120,13 +118,14 @@
     }
 
     p {
-      font-family: 'Inter', sans-serif;
+      font-family: 'SF Pro Rounded', sans-serif;
       font-weight: normal;
       font-size: 16px;
       text-align: center;
       line-height: 28px;
     }
 
+    /* CTA Button */
     .cta-button {
       height: 48px;
       padding: 0 16px;
@@ -141,7 +140,7 @@
       font-weight: 500;
       font-size: 16px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
     }
 
     .cta-button:hover {
@@ -158,6 +157,63 @@
       font-size: 17px;
     }
 
+    /* Email input form */
+    .email-form {
+      display: none; /* Initially hidden */
+      width: 438px;
+      height: 48px;
+      padding: 0px 8px 0px 16px;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 48px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+
+    .email-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #FFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      padding: 0;
+    }
+
+    .email-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .send-button {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      aspect-ratio: 1/1;
+      border-radius: 30px;
+      background: #FFF;
+      border: none;
+      cursor: pointer;
+      color: #000;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .send-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       h1 {
@@ -168,6 +224,11 @@
       .highlight {
         font-size: 90px;
         line-height: 70px;
+      }
+      
+      .email-form {
+        width: 100%;
+        max-width: 350px;
       }
     }
 
@@ -186,6 +247,10 @@
         width: 80px;
         height: 80px;
       }
+      
+      .email-form {
+        max-width: 280px;
+      }
     }
   </style>
 </head>
@@ -195,33 +260,78 @@
       <section class="content">
         <!-- Logo -->
         <div class="logo-container">
-          <img class="logo-gif" src="./public/expensalogo-2.gif" alt="Expensa logo">
+          <img class="logo-gif" src="./public/expensalogo.svg" alt="Expensa logo">
         </div>
 
         <div class="text-content">
           <!-- Header -->
           <header>
-            <h1>Expense tracking,</h1>
-            <span class="highlight">simplified</span>
+            <h1>Know where your</h1>
+            <h1>money goes</h1>
           </header>
 
           <!-- Description and CTA -->
           <div class="description-cta">
             <p>
-              Effortlessly manage your spending with Expensa – a beautifully
-              simple app designed for quick expense entry and a seamless,
-              intuitive experience
+              Smart expense tracking with budgets, subscriptions,
+              and multi-currency support
             </p>
 
             <!-- CTA Button -->
-            <button class="cta-button">
+            <button id="ctaButton" class="cta-button">
               <span>Get early access</span>
               <span class="arrow">→</span>
             </button>
+            
+            <!-- Email Form (initially hidden) -->
+            <form id="emailForm" class="email-form" onsubmit="return false;">
+              <input type="email" class="email-input" placeholder="Enter email" required>
+              <button type="submit" class="send-button">→</button>
+            </form>
           </div>
         </div>
       </section>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctaButton = document.getElementById('ctaButton');
+      const emailForm = document.getElementById('emailForm');
+      
+      ctaButton.addEventListener('click', function() {
+        // Hide the CTA button with a fade effect
+        ctaButton.style.opacity = '0';
+        
+        // After the fade out animation completes, hide the button and show the form
+        setTimeout(function() {
+          ctaButton.style.display = 'none';
+          emailForm.style.display = 'flex';
+          
+          // Trigger fade in for the form
+          setTimeout(function() {
+            emailForm.style.opacity = '1';
+            
+            // Focus on the input field
+            document.querySelector('.email-input').focus();
+          }, 50);
+        }, 300);
+      });
+      
+      // Handle form submission
+      emailForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.querySelector('.email-input').value;
+        
+        if (email) {
+          // You would typically send this to your backend
+          console.log('Email submitted:', email);
+          
+          // Show a success message (you could replace this with your own logic)
+          emailForm.innerHTML = '<div style="color: #69ff98; width: 100%; text-align: center;">Thanks! We\'ll be in touch soon.</div>';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
