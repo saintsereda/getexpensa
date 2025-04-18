@@ -65,11 +65,10 @@
       justify-content: center;
     }
 
-    .logo-gif {
+    .logo-video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* transform: scale(1.5); */
       transform-origin: center;
     }
 
@@ -91,7 +90,7 @@
     }
 
     h1 {
-      font-family: 'SF Pro Rounded', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 400;
       line-height: 80px;
       font-size: 80px;
@@ -121,7 +120,7 @@
     }
 
     p {
-      font-family: 'SF Pro Rounded', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 400;
       font-size: 20px;
       text-align: center;
@@ -267,9 +266,13 @@
   <div class="hero">
     <div class="container">
       <section class="content">
-        <!-- Logo -->
+        <!-- Logo - Changed from GIF to MP4 -->
         <div class="logo-container">
-          <img class="logo-gif" src="./public/expnslogo.mp4" alt="Expensa logo">
+          <video class="logo-video" autoplay loop muted playsinline>
+            <source src="./public/expnslogo.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support MP4 -->
+            <img class="logo-gif" src="./public/expensalogo–1.gif" alt="Expensa logo">
+          </video>
         </div>
 
         <div class="text-content">
